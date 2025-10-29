@@ -11,7 +11,7 @@ export default function App() {
   return (
     <div>
       <Navigation />
-      <main style={{ maxWidth: 1200, margin: '0 auto', padding: '1rem', paddingTop: NAVBAR_HEIGHT }}>
+      <main style={{ maxWidth: 1200, width: '100%', margin: '0 auto', padding: '1rem', paddingTop: NAVBAR_HEIGHT }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />

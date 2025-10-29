@@ -16,17 +16,15 @@ export default function Navigation() {
       height: NAVBAR_HEIGHT,
       background: '#fff',
       boxShadow: '0 2px 8px rgba(0,0,0,0.07)',
-      display: 'flex',
-      alignItems: 'center',
-      justifyContent: 'space-between',
-      padding: '0 2rem',
       borderBottom: '1px solid #eee',
     }}>
-      <Link to="/" style={{ fontWeight: 800, textDecoration: 'none', color: '#111', fontSize: 22, letterSpacing: 0.5 }}>ShopMate</Link>
-      <div style={{ display: 'flex', gap: '2rem' }}>
-        <NavLink to="/" style={({ isActive }) => ({ textDecoration: 'none', color: isActive ? '#111' : '#555', fontWeight: isActive ? 700 : 500 })}>Home</NavLink>
-        <NavLink to="/cart" style={({ isActive }) => ({ textDecoration: 'none', color: isActive ? '#111' : '#555', fontWeight: isActive ? 700 : 500 })}>Cart ({totalQuantity})</NavLink>
-        <NavLink to="/checkout" style={({ isActive }) => ({ textDecoration: 'none', color: isActive ? '#111' : '#555', fontWeight: isActive ? 700 : 500 })}>Checkout</NavLink>
+      <div style={{ maxWidth: 1200, margin: '0 auto', height: '100%', padding: '0 1rem', display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
+        <Link to="/" style={{ fontWeight: 800, textDecoration: 'none', color: '#111', fontSize: 22, letterSpacing: 0.5 }}>ShopMate</Link>
+        <div style={{ display: 'flex', gap: '2rem' }}>
+          <NavLink to="/" style={({ isActive }) => ({ textDecoration: 'none', color: isActive ? '#111' : '#555', fontWeight: isActive ? 700 : 500 })}>Home</NavLink>
+          <NavLink to="/cart" style={({ isActive }) => ({ textDecoration: 'none', color: isActive ? '#111' : '#555', fontWeight: isActive ? 700 : 500 })}>Cart ({totalQuantity})</NavLink>
+          <NavLink to="/checkout" style={({ isActive }) => ({ textDecoration: 'none', color: isActive ? '#111' : '#555', fontWeight: isActive ? 700 : 500 })}>Checkout</NavLink>
+        </div>
       </div>
     </nav>
   )

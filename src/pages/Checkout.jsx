@@ -18,49 +18,68 @@ export default function Checkout() {
   }
 
   if (success) {
-    return <div style={{ textAlign: 'center' }}>
-      <h2>Order placed!</h2>
-      <div>Thanks for your purchase. This was a fake checkout.</div>
+    return <div style={{ display: 'grid', placeItems: 'center', padding: '3rem 0' }}>
+      <div style={{ textAlign: 'center' }}>
+        <h2 style={{ marginBottom: 8 }}>Order placed!</h2>
+        <div style={{ color: '#666' }}>Thanks for your purchase. This was a fake checkout.</div>
+      </div>
     </div>
   }
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: '1fr 360px', gap: 24 }}>
-      <form onSubmit={placeOrder} style={{ display: 'grid', gap: 12 }}>
-        <h3 style={{ margin: 0 }}>Shipping</h3>
-        <input required placeholder="Full name" style={{ padding: 10, borderRadius: 6, border: '1px solid #ccc' }} />
-        <input required placeholder="Email" type="email" style={{ padding: 10, borderRadius: 6, border: '1px solid #ccc' }} />
-        <input required placeholder="Address" style={{ padding: 10, borderRadius: 6, border: '1px solid #ccc' }} />
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-          <input required placeholder="City" style={{ padding: 10, borderRadius: 6, border: '1px solid #ccc' }} />
-          <input required placeholder="Postal code" style={{ padding: 10, borderRadius: 6, border: '1px solid #ccc' }} />
-        </div>
-        <h3 style={{ marginBottom: 0 }}>Payment</h3>
-        <input required placeholder="Card number" style={{ padding: 10, borderRadius: 6, border: '1px solid #ccc' }} />
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 8 }}>
-          <input required placeholder="MM/YY" style={{ padding: 10, borderRadius: 6, border: '1px solid #ccc' }} />
-          <input required placeholder="CVC" style={{ padding: 10, borderRadius: 6, border: '1px solid #ccc' }} />
-        </div>
+    <div style={{ display: 'grid', gridTemplateColumns: '1fr 380px', gap: 24 }}>
+      <form onSubmit={placeOrder} style={{ display: 'grid', gap: 16 }}>
+        <section style={{ background: '#fff', border: '1px solid #eee', borderRadius: 12, padding: 16 }}>
+          <h3 style={{ marginTop: 0, marginBottom: 12 }}>Shipping</h3>
+          <div style={{ display: 'grid', gap: 10 }}>
+            <input required placeholder="Full name" style={inputStyle} />
+            <input required placeholder="Email" type="email" style={inputStyle} />
+            <input required placeholder="Address" style={inputStyle} />
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              <input required placeholder="City" style={inputStyle} />
+              <input required placeholder="Postal code" style={inputStyle} />
+            </div>
+          </div>
+        </section>
+
+        <section style={{ background: '#fff', border: '1px solid #eee', borderRadius: 12, padding: 16 }}>
+          <h3 style={{ marginTop: 0, marginBottom: 12 }}>Payment</h3>
+          <div style={{ display: 'grid', gap: 10 }}>
+            <input required placeholder="Card number" style={inputStyle} />
+            <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 10 }}>
+              <input required placeholder="MM/YY" style={inputStyle} />
+              <input required placeholder="CVC" style={inputStyle} />
+            </div>
+          </div>
+        </section>
+
         <Button type="submit" disabled={placing || list.length === 0}>{placing ? 'Placing…' : 'Place order'}</Button>
       </form>
-      <div style={{ border: '1px solid #e5e5e5', borderRadius: 8, padding: 16, height: 'fit-content' }}>
-        <h3 style={{ marginTop: 0 }}>Order summary</h3>
+
+      <aside style={{ border: '1px solid #eee', borderRadius: 12, padding: 16, height: 'fit-content', background: '#fff' }}>
+        <h3 style={{ marginTop: 0, marginBottom: 12 }}>Order summary</h3>
         <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
           {list.length === 0 && <div>No items</div>}
           {list.map(({ product, quantity }) => (
-            <div key={product.id} style={{ display: 'flex', justifyContent: 'space-between' }}>
-              <div>{product.title} × {quantity}</div>
-              <div>${(quantity * Number(product.price)).toFixed(2)}</div>
+            <div key={product.id} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'baseline' }}>
+              <div style={{ color: '#333' }}>{product.title} × {quantity}</div>
+              <div style={{ fontWeight: 600 }}>${(quantity * Number(product.price)).toFixed(2)}</div>
             </div>
           ))}
         </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12, fontWeight: 700 }}>
+        <div style={{ display: 'flex', justifyContent: 'space-between', marginTop: 12, paddingTop: 12, borderTop: '1px solid #eee', fontWeight: 800 }}>
           <div>Total</div>
           <div>${subtotal.toFixed(2)}</div>
         </div>
-      </div>
+      </aside>
     </div>
   )
+}
+
+const inputStyle = {
+  padding: 12,
+  borderRadius: 8,
+  border: '1px solid #ddd',
 }
 
 

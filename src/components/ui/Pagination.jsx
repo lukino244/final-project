@@ -16,7 +16,7 @@ export default function Pagination({ page, setPage, totalItems, pageSize = 8 }) 
   }
 
   return (
-    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 16 }}>
+    <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8, marginTop: 64 }}>
       <button onClick={() => go(page - 1)} disabled={page === 1} style={navBtnStyle}>Prev</button>
       {makeRange().map((n, idx) => n === '…' ? (
         <span key={`dots-${idx}`} style={{ padding: '6px 8px', color: '#888' }}>…</span>

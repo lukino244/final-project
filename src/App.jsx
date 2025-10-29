@@ -9,9 +9,9 @@ import Checkout from './pages/Checkout.jsx'
 
 export default function App() {
   return (
-    <div>
+    <div style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
       <Navigation />
-      <main style={{ maxWidth: 1200, width: '100%', margin: '0 auto', padding: '1rem', paddingTop: NAVBAR_HEIGHT }}>
+      <main style={{ flex: 1, maxWidth: 1200, width: '100%', margin: '0 auto', padding: '1rem', paddingTop: NAVBAR_HEIGHT + 76, paddingBottom: 56 }}>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/product/:id" element={<ProductDetails />} />

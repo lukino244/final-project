@@ -1,22 +1,32 @@
 import { Link, NavLink } from 'react-router-dom'
 import { useBasket } from '../../context/BasketContext.jsx'
 
+export const NAVBAR_HEIGHT = 56;
+
 export default function Navigation() {
   const { totalQuantity } = useBasket()
 
   return (
     <nav style={{
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      width: '100%',
+      zIndex: 100,
+      height: NAVBAR_HEIGHT,
+      background: '#fff',
+      boxShadow: '0 2px 8px rgba(0,0,0,0.07)',
       display: 'flex',
       alignItems: 'center',
       justifyContent: 'space-between',
-      padding: '1rem',
-      borderBottom: '1px solid #e5e5e5',
+      padding: '0 2rem',
+      borderBottom: '1px solid #eee',
     }}>
-      <Link to="/" style={{ fontWeight: 700, textDecoration: 'none' }}>ShopMate</Link>
-      <div style={{ display: 'flex', gap: '1rem' }}>
-        <NavLink to="/" style={{ textDecoration: 'none' }}>Home</NavLink>
-        <NavLink to="/cart" style={{ textDecoration: 'none' }}>Cart ({totalQuantity})</NavLink>
-        <NavLink to="/checkout" style={{ textDecoration: 'none' }}>Checkout</NavLink>
+      <Link to="/" style={{ fontWeight: 800, textDecoration: 'none', color: '#111', fontSize: 22, letterSpacing: 0.5 }}>ShopMate</Link>
+      <div style={{ display: 'flex', gap: '2rem' }}>
+        <NavLink to="/" style={({ isActive }) => ({ textDecoration: 'none', color: isActive ? '#111' : '#555', fontWeight: isActive ? 700 : 500 })}>Home</NavLink>
+        <NavLink to="/cart" style={({ isActive }) => ({ textDecoration: 'none', color: isActive ? '#111' : '#555', fontWeight: isActive ? 700 : 500 })}>Cart ({totalQuantity})</NavLink>
+        <NavLink to="/checkout" style={({ isActive }) => ({ textDecoration: 'none', color: isActive ? '#111' : '#555', fontWeight: isActive ? 700 : 500 })}>Checkout</NavLink>
       </div>
     </nav>
   )

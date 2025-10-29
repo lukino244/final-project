@@ -1,5 +1,6 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import ProductCard from '../components/ProductCard.jsx'
+import Pagination from '../components/ui/Pagination.jsx'
 
 export default function Home() {
   const [products, setProducts] = useState([])
@@ -27,15 +28,25 @@ export default function Home() {
     }
   }, [])
 
+  const [page, setPage] = useState(1)
+  const pageSize = 8
+  const paged = useMemo(() => {
+    const start = (page - 1) * pageSize
+    return products.slice(start, start + pageSize)
+  }, [products, page])
+
   if (loading) return <div>Loading products…</div>
   if (error) return <div style={{ color: 'tomato' }}>{error}</div>
 
   return (
-    <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
-      {products.map((p) => (
-        <ProductCard key={p.id} product={p} />
-      ))}
-    </div>
+    <>
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(220px, 1fr))', gap: 16 }}>
+        {paged.map((p) => (
+          <ProductCard key={p.id} product={p} />
+        ))}
+      </div>
+      <Pagination page={page} setPage={setPage} totalItems={products.length} pageSize={pageSize} />
+    </>
   )
 }
 

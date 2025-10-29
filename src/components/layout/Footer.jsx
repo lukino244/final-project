@@ -8,9 +8,9 @@ export default function Footer() {
       fontSize: 12,
       color: '#666'
     }}>
-      © {new Date().getFullYear()} ShopMate. All rights reserved.
+      © {new Date().getFullYear()} ShopLuka. All rights reserved.
     </footer>
   )
 }
-
+  
 
